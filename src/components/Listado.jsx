@@ -33,16 +33,22 @@ const Listado = () => {
    
   return (
         <div className="row">
-            <div className="col-3">
-            <div className="card" >
-                <img src="..." className="card-img-top" alt="..." />
-                <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <Link to="/" className="btn btn-primary">Go somewhere</Link>
-                </div>
-                </div>
-            </div>
+            {
+                moviesList?.map((movie, idx) => {
+                    return (
+                    <div className="col-3" key={idx}>
+                    <div className="card" >
+                        <img src={'https://image.tmdb.org/t/p/w500/' + movie.poster_path} className="card-img-top" alt="..." />
+                        <div className="card-body">
+                            <h5 className="card-title">{movie.title.slice(0, 17)}</h5>
+                            <p className="card-text">{movie.overview.slice(0, 100)}...</p>
+                            <Link to="/" className="btn btn-primary">Ver mas</Link>
+                        </div>
+                        </div>
+                    </div>
+                    )
+                })
+            }
 
             
         </div>
