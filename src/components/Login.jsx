@@ -38,22 +38,29 @@ const Login = () => {
   return (
     <>
       {token && navigate("/listado")}
-      <h2>Formulario de Login</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="">
-          <span>Correo electrónico</span>
-          <br />
-          <input type="text" name="email" />
-        </label>
-        <br />
-        <label htmlFor="">
-          <span>Contraseña</span>
-          <br />
-          <input type="password" name="password" />
-        </label>
-        <br />
-        <button type="submit">Ingresar</button>
-      </form>
+
+      <div className="row">
+        <div>
+          <h2>Formulario de Login</h2>
+          <form onSubmit={handleSubmit}>
+            <label className="form-label d-block mt-2">
+              <span>Correo electrónico</span>
+              <br />
+              <input className="form-control" type="text" name="email" />
+            </label>
+            <br />
+            <label className="form-label d-block mt-2">
+              <span>Contraseña</span>
+              <br />
+              <input className="form-control" type="password" name="password" />
+            </label>
+            <br />
+            <button className="btn btn-success mt-2" type="submit">
+              Ingresar
+            </button>
+          </form>
+        </div>
+      </div>
     </>
   );
 };

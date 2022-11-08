@@ -10,8 +10,7 @@ import "./css/bootstrap.min.css";
 function App() {
   return (
     <>
-      {/* <Header /> */}
-
+      <Header />
       <div className="container mt-3">
         <Routes>
           <Route path="/" element={<Login />} />
