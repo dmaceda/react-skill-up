@@ -14,7 +14,9 @@ const Detalle = () => {
   let movieID = query.get("movieID");
 
   const [movieDetail, setMovieDetail] = useState(null);
+  const [credits, setCredits] = useState(null);
 
+  //Detalle general de la pelicula
   useEffect(() => {
     const endPoint = `https://api.themoviedb.org/3/movie/${movieID}?api_key=a9f89e28a9c52e268490a138c8218858&language=es-ES`;
     axios
@@ -28,7 +30,19 @@ const Detalle = () => {
       });
   }, []);
 
-  console.log(movieDetail);
+  //Creditos de la pelicula
+  useEffect(() => {
+    const endPoint = `https://api.themoviedb.org/3/movie/${movieID}/credits?api_key=a9f89e28a9c52e268490a138c8218858&language=es-ES`;
+    axios
+      .get(endPoint)
+      .then((resp) => {
+        const apiData = resp.data.cast;
+        setCredits(apiData);
+      })
+      .catch((error) => {
+        swAlert(<h2>Hubo errores, intenta más tarde</h2>);
+      });
+  }, []);
 
   return (
     <>
@@ -58,6 +72,12 @@ const Detalle = () => {
               <ul>
                 {movieDetail.genres.map((genre) => (
                   <li key={genre.id}>{genre.name}</li>
+                ))}
+              </ul>
+              <h5>Reparto:</h5>
+              <ul>
+                {credits?.slice(0, 5).map((actor) => (
+                  <li key={actor.id}>{actor.name}</li>
                 ))}
               </ul>
             </div>
