@@ -1,12 +1,17 @@
 import React from "react";
 import swAlert from "@sweetalert/with-react";
+import { useNavigate } from "react-router-dom";
 
 const Buscador = () => {
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    const keyword = e.target.keyword.value;
-    if (keyword.length === 0) {
+    const keyword = e.target.keyword.value.trim();
+    if (keyword < 4) {
       swAlert(<h2>Ingrese el nombre de la pelicula</h2>);
+    } else {
+      e.target.keyword.value = "";
+      navigate(`/resultados?keyword=${keyword}`);
     }
   };
 

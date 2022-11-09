@@ -3,8 +3,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import swAlert from "@sweetalert/with-react";
+import { MdOutlineFavoriteBorder } from "react-icons/md";
 
-const Listado = () => {
+const Listado = ({ addOrRemoveFavs }) => {
   let token = sessionStorage.getItem("token");
   const navigate = useNavigate();
   const [moviesList, setMoviesList] = useState([]);
@@ -36,6 +37,9 @@ const Listado = () => {
                   className="card-img-top"
                   alt="..."
                 />
+                <button className="fav-btn" onClick={addOrRemoveFavs}>
+                  <MdOutlineFavoriteBorder color="white" />
+                </button>
                 <div className="card-body">
                   <h5 className="card-title">{movie.title.slice(0, 17)}</h5>
                   <p className="card-text">{movie.overview.slice(0, 90)}...</p>
